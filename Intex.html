@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>HANASHIN — Portfolio</title>
+
+  <meta
+    name="description"
+    content="HANASHIN — curious by default. Science, machines, space, code, music, design and stories."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #e5e4de;
+      --text: #2b2b2a;
+      --muted: #62615d;
+      --accent: #d01d12;
+      --line: #b8b7b0;
+      --card: #deddd7;
+      --nav-bg: rgba(229, 228, 222, 0.88);
+    }
+
+    body.dark {
+      --bg: #171716;
+      --text: #e8e7e1;
+      --muted: #a5a49e;
+      --accent: #ff3b30;
+      --line: #464642;
+      --card: #20201e;
+      --nav-bg: rgba(23, 23, 22, 0.9);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "JetBrains Mono", monospace;
+      text-transform: uppercase;
+      overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.07;
+      z-index: 9999;
+
+      background-image:
+        repeating-radial-gradient(
+          circle at 0 0,
+          transparent 0,
+          rgba(0, 0, 0, 0.25) 1px,
+          transparent 2px
+        );
+
+      background-size: 5px 5px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      text-transform: uppercase;
+    }
+
+    .container {
+      width: min(1400px, 92%);
+      margin: auto;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      border-bottom: 1px solid var(--line);
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav-logo {
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      list-style: none;
+      font-size: 0.7rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .theme-btn {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      padding: 8px 11px;
+      cursor: pointer;
+      font-size: 0.65rem;
+      transition: 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 45px;
+    }
+
+    .hero-title {
+      font-family: "Chakra Petch", sans-serif;
+      font-size: clamp(5rem, 17vw, 15rem);
+      line-height: 0.78;
+      letter-spacing: -0.08em;
+      font-weight: 700;
+      color: var(--accent);
+      font-style: italic;
+
+      transform: translateX(-7px);
+      transition: transform 0.15s ease-out;
+      user-select: none;
+    }
+
+    .hero-subtitle {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-top: 45px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+
+    .hero-subtitle p {
+      max-width: 700px;
+      font-size: clamp(0.8rem, 1.4vw, 1.1rem);
+      line-height: 1.7;
+    }
+
+    .hero-year {
+      color: var(--accent);
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .scroll-note {
+      position: absolute;
+      bottom: 20px;
+      right: 0;
+      font-size: 0.6rem;
+      color: var(--muted);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.4;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================= */
+
+    section {
+      padding: 110px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 25px;
+      margin-bottom: 60px;
+    }
+
+    .section-number {
+      color: var(--accent);
+      font-size: 0.7rem;
+    }
+
+    .section-title {
+      font-family: "Chakra Petch", sans-serif;
+      font-size: clamp(2.5rem, 6vw, 6rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
+
+    .section-description {
+      margin-top: 20px;
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.9;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap: 70px;
+    }
+
+    .about-text {
+      font-family: "Chakra Petch", sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2.7rem);
+      line-height: 1.3;
+      text-transform: none;
+    }
+
+    .about-text strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .terminal {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 20px;
+      font-size: 0.68rem;
+      line-height: 2;
+    }
+
+    .terminal-top {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .terminal-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px solid var(--muted);
+    }
+
+    .terminal-key {
+      color: var(--accent);
+    }
+
+    /* =========================
+       PROJECTS
+    ========================= */
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid var(--line);
+    }
+
+    .project {
+      min-height: 360px;
+      padding: 35px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      transition:
+        background 0.3s ease,
+        color 0.3s ease;
+    }
+
+    .project:nth-child(2n) {
+      border-right: none;
+    }
+
+    .project:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .project-number {
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+
+    .project:hover .project-number,
+    .project:hover .project-description,
+    .project:hover .project-tags {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .project-title {
+      margin-top: 80px;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: clamp(1.8rem, 4vw, 3.8rem);
+      line-height: 0.95;
+    }
+
+    .project-description {
+      color: var(--muted);
+      font-size: 0.68rem;
+      line-height: 1.8;
+      max-width: 500px;
+      margin-top: 20px;
+    }
+
+    .project-tags {
+      position: absolute;
+      bottom: 25px;
+      left: 35px;
+      right: 35px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.58rem;
+    }
+
+    .project-tags span {
+      border: 1px solid currentColor;
+      padding: 5px 7px;
+    }
+
+    /* =========================
+       SKILLS
+    ========================= */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 45px 80px;
+    }
+
+    .skill {
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      margin-bottom: 12px;
+    }
+
+    .skill-percent {
+      color: var(--accent);
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 5px;
+      background: var(--line);
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* =========================
+       INTERESTS
+    ========================= */
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 35px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      padding: 9px 13px;
+      cursor: pointer;
+      font-size: 0.6rem;
+      transition: 0.2s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .interest {
+      min-height: 105px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 20px;
+      display: flex;
+      align-items: flex-end;
+      font-size: 0.65rem;
+      line-height: 1.4;
+      transition: 0.2s ease;
+    }
+
+    .interest:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .interest.hidden {
+      display: none;
+    }
+
+    /* =========================
+       EXPLORING
+    ========================= */
+
+    .exploring {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .explore-card {
+      border: 1px solid var(--line);
+      padding: 30px;
+      min-height: 220px;
+      position: relative;
+      transition: 0.25s ease;
+    }
+
+    .explore-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+    }
+
+    .explore-index {
+      color: var(--accent);
+      font-size: 0.6rem;
+    }
+
+    .explore-title {
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 2rem;
+      margin-top: 60px;
+    }
+
+    .explore-card p {
+      color: var(--muted);
+      font-size: 0.62rem;
+      line-height: 1.7;
+      margin-top: 12px;
+    }
+
+    /* =========================
+       MANIFESTO
+    ========================= */
+
+    .manifesto {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .manifesto-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .manifesto-item {
+      min-height: 150px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 25px;
+      display: flex;
+      align-items: center;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 1.15rem;
+      line-height: 1.2;
+    }
+
+    .manifesto-item.highlight {
+      color: var(--accent);
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+    }
+
+    .contact-big {
+      font-family: "Chakra Petch", sans-serif;
+      font-size: clamp(3rem, 8vw, 8rem);
+      line-height: 0.85;
+      letter-spacing: -0.05em;
+    }
+
+    .contact-big span {
+      color: var(--accent);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-link {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      transition: 0.2s ease;
+    }
+
+    .contact-link::after {
+      content: "↗";
+      color: var(--accent);
+    }
+
+    .contact-link:hover {
+      padding-left: 12px;
+      color: var(--accent);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 35px 0;
+    }
+
+    .footer-main {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      font-size: 0.6rem;
+      color: var(--muted);
+    }
+
+    .footer-main strong {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--line);
+      margin-top: 30px;
+      padding-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.55rem;
+      color: var(--muted);
+    }
+
+    /* =========================
+       REVEAL ANIMATION
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: 85vh;
+      }
+
+      .hero-meta {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .hero-subtitle {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .project {
+        border-right: none;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .interest-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .exploring {
+        grid-template-columns: 1fr;
+      }
+
+      .manifesto-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        grid-template-columns: 60px 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        width: 90%;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .hero-title {
+        font-size: 25vw;
+      }
+
+      .interest-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .interest {
+        min-height: 80px;
+      }
+
+      .footer-main,
+      .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVIGATION
+  ========================= -->
+
+  <nav>
+    <div class="container nav-inner">
+
+      <a href="#home" class="nav-logo">
+        HANASHIN
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#projects">PROJECTS</a></li>
+        <li><a href="#skills">SKILLS</a></li>
+        <li><a href="#interests">INTERESTS</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+
+      <button class="theme-btn" id="themeToggle">
+        DARK
+      </button>
+
+    </div>
+  </nav>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <header class="hero" id="home">
+
+    <div class="container">
+
+      <div class="hero-meta">
+        <span>DIFFERENT INTERESTS. SAME SOUL. ONE STORY.</span>
+        <span>EST. 2007.</span>
+      </div>
+
+      <div class="hero-title" id="heroTitle">
+        HANASHIN
+      </div>
+
+      <div class="hero-subtitle">
+
+        <p>
+          CURIOUS BY DEFAULT.<br />
+          QUESTIONS BEFORE ANSWERS.<br />
+          ALWAYS BUILDING, LEARNING,
+          BREAKING, UNDERSTANDING.
+        </p>
+
+        <div class="hero-year">
+          001 / 001
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="container">
+      <div class="scroll-note">
+        SCROLL ↓
+      </div>
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       ABOUT
+  ========================= -->
+
+  <section id="about">
+
+    <div class="container">
+
+      <div class="section-header reveal">
+
+        <div class="section-number">
+          01 /
+        </div>
+
+        <div>
+          <h2 class="section-title">
+            ABOUT
+          </h2>
+
+          <p class="section-description">
+            NOT A RESUME. NOT A BIO.
+            JUST A SMALL WINDOW INTO
+            HOW I THINK, WHAT I BUILD,
+            AND WHAT I KEEP GETTING CURIOUS ABOUT.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="about-grid">
+
+        <div class="about-text reveal">
+          I LIKE <strong>QUESTIONS</strong> MORE
+          THAN EASY ANSWERS.
+
+          <br /><br />
+
+          SCIENCE IN ONE HAND.
+          ART IN THE OTHER.
+
+          <br /><br />
+
+          I'M INTERESTED IN
+          <strong>HOW THINGS WORK</strong>,
+          WHY THEY EXIST,
+          AND WHAT HAPPENS IF WE
+          BUILD THEM DIFFERENTLY.
+        </div>
+
+
+        <div class="terminal reveal">
+
+          <div class="terminal-top">
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+          </div>
+
+          <div>
+            <span class="terminal-key">NAME</span>
+            : HANASHIN
+          </div>
+
+          <div>
+            <span class="terminal-key">STATUS</span>
+            : IN PROGRESS
+          </div>
+
+          <div>
+            <span class="terminal-key">MODE</span>
+            : CURIOUS
+          </div>
+
+          <div>
+            <span class="terminal-key">CURRENTLY</span>
+            : ENGINEERING
+          </div>
+
+          <div>
+            <span class="terminal-key">INTERESTS</span>
+            : TOO MANY
+          </div>
+
+          <div>
+            <span class="terminal-key">NEXT</span>
+            : UNKNOWN
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       PROJECTS
+  ========================= -->
+
+  <section id="projects">
+
+    <div class="container">
+
+      <div class="section-header reveal">
+
+        <div class="section-number">
+          02 /
+        </div>
+
+        <div>
+          <h2 class="section-title">
+            PROJECTS
+          </h2>
+
+          <p class="section-description">
+            IDEAS ARE NICE.
+            MAKING THEM REAL IS BETTER.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="container">
+
+      <div class="projects">
+
+        <article class="project reveal">
+
+          <div class="project-number">
+            001 / WEB APP
+          </div>
+
+          <h3 class="project-title">
+            ATTENDANCE<br />
+            PLANNER
+          </h3>
+
+          <p class="project-description">
+            A STUDENT TOOL TO PLAN ATTENDANCE
+            BEFORE THE SEMESTER GETS CHAOTIC.
+            TIMETABLE ANALYSIS, TARGET ATTENDANCE,
+            SUBJECT PRIORITIES AND PLANNED ABSENCES.
+          </p>
+
+          <div class="project-tags">
+            <span>PYTHON</span>
+            <span>FASTAPI</span>
+            <span>JAVASCRIPT</span>
+            <span>SQL</span>
+          </div>
+
+        </article>
+
+
+        <article class="project reveal">
+
+          <div class="project-number">
+            002 / DIGITAL IDENTITY
+          </div>
+
+          <h3 class="project-title">
+            HANASHIN
+          </h3>
+
+          <p class="project-description">
+            A PERSONAL DIGITAL IDENTITY SYSTEM.
+            PART PORTFOLIO, PART EXPERIMENT,
+            PART RECORD OF THE THINGS
+            I'M CURRENTLY OBSESSED WITH.
+          </p>
+
+          <div class="project-tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JAVASCRIPT</span>
+            <span>DESIGN</span>
+          </div>
+
+        </article>
+
+
+        <article class="project reveal">
+
+          <div class="project-number">
+            003 / RESEARCH IDEA
+          </div>
+
+          <h3 class="project-title">
+            SPACE<br />
+            SOLAR
+          </h3>
+
+          <p class="project-description">
+            AN EARLY RESEARCH IDEA EXPLORING
+            SOLAR ENERGY BEYOND EARTH'S SURFACE
+            AND THE POSSIBILITIES OF USING SPACE
+            AS PART OF FUTURE ENERGY SYSTEMS.
+          </p>
+
+          <div class="project-tags">
+            <span>SPACE</span>
+            <span>ENERGY</span>
+            <span>RESEARCH</span>
+          </div>
+
+        </article>
+
+
+        <article class="project reveal">
+
+          <div class="project-number">
+            004 / LOADING
+          </div>
+
+          <h3 class="project-title">
+            MORE
+          </h3>
+
+          <p class="project-description">
+            THIS SPACE IS RESERVED FOR
+            THE NEXT THING I DECIDE TO BUILD.
+          </p>
+
+          <div class="project-tags">
+            <span>COMING SOON</span>
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SKILLS
+  ========================= -->
+
+  <section id="skills">
+
+    <div class="container">
+
+      <div class="section-header reveal">
+
+        <div class="section-number">
+          03 /
+        </div>
+
+        <div>
+          <h2 class="section-title">
+            SKILLS
+          </h2>
+
+          <p class="section-description">
+            NOT FINISHED.
+            JUST CURRENTLY LEARNING.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="skills-grid">
+
+        <div class="skill reveal">
+
+          <div class="skill-top">
+            <span>PYTHON</span>
+            <span class="skill-percent">65%</span>
+          </div>
+
+          <div class="skill-bar">
+            <div class="skill-fill" data-width="65%"></div>
+          </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+          <div class="skill-top">
+            <span>C / C++</span>
+            <span class="skill-percent">45%</span>
+          </div>
+
+          <div class="skill-bar">
+            <div class="skill-fill" data-width="45%"></div>
+          </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+          <div class="skill-top">
+            <span>WEB DEVELOPMENT</span>
+            <span class="skill-percent">55%</span>
+          </div>
+
+          <div class="skill-bar">
+            <div class="skill-fill" data-width="55%"></div>
+          </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+          <div class="skill-top">
+            <span>ELECTRONICS</span>
+            <span class="skill-percent">40%</span>
+          </div>
+
+          <div class="skill-bar">
+            <div class="skill-fill" data-width="40%"></div>
+          </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+          <div class="skill-top">
+            <span>PHYSICS</span>
+            <span class="skill-percent">60%</span>
+          </div>
+
+          <div class="skill-bar">
+            <div class="skill-fill" data-width="60%"></div>
+          </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+          <div class="skill-top">
+            <span>DESIGN</span>
+            <span class="skill-percent">70%</span>
+          </div>
+
+          <div class="skill-bar">
+            <div class="skill-fill" data-width="70%"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       INTERESTS
+  ========================= -->
+
+  <section id="interests">
+
+    <div class="container">
+
+      <div class="section-header reveal">
+
+        <div class="section-number">
+          04 /
+        </div>
+
+        <div>
+          <h2 class="section-title">
+            INTERESTS
+          </h2>
+
+          <p class="section-description">
+            DIFFERENT TOPICS.
+            SOMEHOW THEY ALL CONNECT.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="filter-buttons reveal">
+
+        <button class="filter-btn active" data-filter="all">
+          ALL
+        </button>
+
+        <button class="filter-btn" data-filter="science">
+          SCIENCE
+        </button>
+
+        <button class="filter-btn" data-filter="machines">
+          MACHINES
+        </button>
+
+        <button class="filter-btn" data-filter="creative">
+          CREATIVE
+        </button>
+
+        <button class="filter-btn" data-filter="stories">
+          STORIES
+        </button>
+
+      </div>
+
+
+      <div class="interest-grid">
+
+        <div class="interest" data-category="machines">
+          FORMULA 1
+        </div>
+
+        <div class="interest" data-category="machines">
+          FERRARI
+        </div>
+
+        <div class="interest" data-category="machines">
+          LEWIS HAMILTON
+        </div>
+
+        <div class="interest" data-category="machines">
+          CHARLES LECLERC
+        </div>
+
+        <div class="interest" data-category="machines">
+          CAR ENGINEERING
+        </div>
+
+        <div class="interest" data-category="science">
+          PHYSICS
+        </div>
+
+        <div class="interest" data-category="science">
+          SPACE
+        </div>
+
+        <div class="interest" data-category="science">
+          ELECTRONICS
+        </div>
+
+        <div class="interest" data-category="science">
+          VLSI
+        </div>
+
+        <div class="interest" data-category="science">
+          SUSTAINABILITY
+        </div>
+
+        <div class="interest" data-category="science">
+          SOLAR ENERGY
+        </div>
+
+        <div class="interest" data-category="science">
+          SPACE SOLAR POWER
+        </div>
+
+        <div class="interest" data-category="science">
+          PROGRAMMING
+        </div>
+
+        <div class="interest" data-category="science">
+          PYTHON
+        </div>
+
+        <div class="interest" data-category="science">
+          MACHINE LEARNING
+        </div>
+
+        <div class="interest" data-category="creative">
+          MUSIC
+        </div>
+
+        <div class="interest" data-category="creative">
+          SONGWRITING
+        </div>
+
+        <div class="interest" data-category="creative">
+          DESIGN
+        </div>
+
+        <div class="interest" data-category="creative">
+          VISUAL STORYTELLING
+        </div>
+
+        <div class="interest" data-category="creative">
+          CREATIVE DIRECTION
+        </div>
+
+        <div class="interest" data-category="stories">
+          BOOKS
+        </div>
+
+        <div class="interest" data-category="stories">
+          PHILOSOPHY
+        </div>
+
+        <div class="interest" data-category="stories">
+          ANIME
+        </div>
+
+        <div class="interest" data-category="stories">
+          DETECTIVE CONAN
+        </div>
+
+        <div class="interest" data-category="stories">
+          SHINICHI KUDO
+        </div>
+
+        <div class="interest" data-category="stories">
+          SENKU
+        </div>
+
+        <div class="interest" data-category="stories">
+          LITERATURE
+        </div>
+
+        <div class="interest" data-category="stories">
+          TEMPLES
+        </div>
+
+        <div class="interest" data-category="stories">
+          TIBETAN CULTURE
+        </div>
+
+        <div class="interest" data-category="creative">
+          GAMES
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CURRENTLY EXPLORING
+  ========================= -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-header reveal">
+
+        <div class="section-number">
+          05 /
+        </div>
+
+        <div>
+          <h2 class="section-title">
+            CURRENTLY<br />
+            EXPLORING
+          </h2>
+
+          <p class="section-description">
+            THINGS I'M TRYING TO UNDERSTAND
+            A LITTLE BETTER.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="exploring">
+
+        <article class="explore-card reveal">
+
+          <div class="explore-index">
+            01 / LEARNING
+          </div>
+
+          <h3 class="explore-title">
+            MACHINE<br />
+            LEARNING
+          </h3>
+
+          <p>
+            NUMPY. PANDAS. SCIKIT-LEARN.
+            TENSORFLOW.
+            ONE CONCEPT AT A TIME.
+          </p>
+
+        </article>
+
+
+        <article class="explore-card reveal">
+
+          <div class="explore-index">
+            02 / BUILDING
+          </div>
+
+          <h3 class="explore-title">
+            ELECTRONICS
+          </h3>
+
+          <p>
+            CIRCUITS, EMBEDDED SYSTEMS,
+            AUTOMOTIVE ELECTRONICS
+            AND EVERYTHING THAT MAKES MACHINES THINK.
+          </p>
+
+        </article>
+
+
+        <article class="explore-card reveal">
+
+          <div class="explore-index">
+            03 / WONDERING
+          </div>
+
+          <h3 class="explore-title">
+            SPACE
+          </h3>
+
+          <p>
+            ENERGY, PROPULSION,
+            ORBITS, EXPLORATION
+            AND WHAT COMES AFTER EARTH.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MANIFESTO
+  ========================= -->
+
+  <section class="manifesto">
+
+    <div class="container">
+
+      <div class="section-header reveal">
+
+        <div class="section-number">
+          06 /
+        </div>
+
+        <div>
+          <h2 class="section-title">
+            MANIFESTO
+          </h2>
+
+          <p class="section-description">
+            A FEW THINGS I WANT TO KEEP
+            REMEMBERING.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="manifesto-grid">
+
+        <div class="manifesto-item highlight reveal">
+          CURIOUS BY DEFAULT.
+        </div>
+
+        <div class="manifesto-item reveal">
+          QUESTIONS BEFORE ANSWERS.
+        </div>
+
+        <div class="manifesto-item reveal">
+          BUILT TO WONDER.
+        </div>
+
+        <div class="manifesto-item reveal">
+          SCIENCE IN ONE HAND,
+          ART IN THE OTHER.
+        </div>
+
+        <div class="manifesto-item reveal">
+          MAKING THINGS /
+          BREAKING THINGS /
+          UNDERSTANDING THINGS.
+        </div>
+
+        <div class="manifesto-item highlight reveal">
+          I WANT TO KNOW WHY.
+          NOT JUST WHAT.
+        </div>
+
+        <div class="manifesto-item reveal">
+          TAKE IT APART.
+          UNDERSTAND IT.
+        </div>
+
+        <div class="manifesto-item reveal">
+          FOLLOW THE QUESTION.
+        </div>
+
+        <div class="manifesto-item reveal">
+          EVERYTHING HAS A STORY.
+        </div>
+
+        <div class="manifesto-item reveal">
+          SPEED / MUSIC / STARS.
+        </div>
+
+        <div class="manifesto-item reveal">
+          A MIND WITH TOO MANY
+          TABS OPEN.
+        </div>
+
+        <div class="manifesto-item highlight reveal">
+          MADE OF QUESTIONS.
+          AIMED AT THE STARS.
+        </div>
+
+        <div class="manifesto-item reveal">
+          BUILDING WHAT DOESN'T
+          EXIST YET.
+        </div>
+
+        <div class="manifesto-item reveal">
+          EARTH IS HOME.
+          SPACE IS NEXT.
+        </div>
+
+        <div class="manifesto-item reveal">
+          MORE CURIOUS THAN CERTAIN.
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CONTACT
+  ========================= -->
+
+  <section id="contact">
+
+    <div class="container">
+
+      <div class="section-header reveal">
+
+        <div class="section-number">
+          07 /
+        </div>
+
+        <div>
+          <h2 class="section-title">
+            CONTACT
+          </h2>
+
+          <p class="section-description">
+            IF YOU FOUND SOMETHING INTERESTING HERE,
+            SAY HI.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="contact-grid">
+
+        <div class="contact-big reveal">
+          LET'S<br />
+          <span>CONNECT.</span>
+        </div>
+
+
+        <div class="contact-links reveal">
+
+          <a
+            class="contact-link"
+            href="mailto:shinchanaironman@gmail.com"
+          >
+            EMAIL
+          </a>
+
+          <a
+            class="contact-link"
+            href="https://github.com/hanashinc"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GITHUB
+          </a>
+
+          <a
+            class="contact-link"
+            href="https://www.linkedin.com/in/shinchana-ironman-28663641/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LINKEDIN
+          </a>
+
+          <a
+            class="contact-link"
+            href="https://www.instagram.com/bett.ershoe/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            INSTAGRAM
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-main">
+
+        <span>
+          <strong>HANASHIN</strong>
+          — A PERSON WITH A LOT OF THOUGHTS
+          AND EVEN MORE PLANS.
+        </span>
+
+        <span>
+          CURIOUS / CREATIVE / RESTLESS / HUMAN / IN PROGRESS
+        </span>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <span>
+          © 2026 HANASHIN
+        </span>
+
+        <span>
+          MADE WITH QUESTIONS.
+        </span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    /* =========================
+       DARK MODE
+    ========================= */
+
+    const themeToggle = document.getElementById("themeToggle");
+
+    const savedTheme = localStorage.getItem("hanashin-theme");
+
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark");
+      themeToggle.textContent = "LIGHT";
+    }
+
+    themeToggle.addEventListener("click", () => {
+
+      document.body.classList.toggle("dark");
+
+      const isDark =
+        document.body.classList.contains("dark");
+
+      themeToggle.textContent =
+        isDark ? "LIGHT" : "DARK";
+
+      localStorage.setItem(
+        "hanashin-theme",
+        isDark ? "dark" : "light"
+      );
+
+    });
+
+
+    /* =========================
+       INTEREST FILTER
+    ========================= */
+
+    const filterButtons =
+      document.querySelectorAll(".filter-btn");
+
+    const interests =
+      document.querySelectorAll(".interest");
+
+    filterButtons.forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        filterButtons.forEach(btn => {
+          btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        const filter =
+          button.dataset.filter;
+
+        interests.forEach(item => {
+
+          if (
+            filter === "all" ||
+            item.dataset.category === filter
+          ) {
+            item.classList.remove("hidden");
+          } else {
+            item.classList.add("hidden");
+          }
+
+        });
+
+      });
+
+    });
+
+
+    /* =========================
+       SCROLL REVEAL
+    ========================= */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const revealObserver =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+              revealObserver.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+    revealElements.forEach(element => {
+      revealObserver.observe(element);
+    });
+
+
+    /* =========================
+       SKILL BARS
+    ========================= */
+
+    const skillBars =
+      document.querySelectorAll(".skill-fill");
+
+    const skillObserver =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              const width =
+                entry.target.dataset.width;
+
+              entry.target.style.width = width;
+
+              skillObserver.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.5
+        }
+      );
+
+    skillBars.forEach(bar => {
+      skillObserver.observe(bar);
+    });
+
+
+    /* =========================
+       HERO MOUSE EFFECT
+    ========================= */
+
+    const heroTitle =
+      document.getElementById("heroTitle");
+
+    document.addEventListener(
+      "mousemove",
+      event => {
+
+        const x =
+          (event.clientX /
+            window.innerWidth -
+            0.5) * 10;
+
+        const y =
+          (event.clientY /
+            window.innerHeight -
+            0.5) * 5;
+
+        heroTitle.style.transform =
+          `translate(${x}px, ${y}px)`;
+
+      }
+    );
+
+
+    /* =========================
+       CONSOLE MESSAGE
+    ========================= */
+
+    console.log(
+      "%c HANASHIN ",
+      "background:#d01d12;color:white;font-size:20px;padding:8px;"
+    );
+
+    console.log(
+      "CURIOUS BY DEFAULT. QUESTIONS BEFORE ANSWERS."
+    );
+
+  </script>
+
+</body>
+</html>
